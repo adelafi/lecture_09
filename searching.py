@@ -39,6 +39,26 @@ def pattern_search(sequence, template):
             index.add(i)
     return index
 
+
+def binary_search(sequence, number):
+    length = len(sequence)
+    while length > 0:
+        length = len(sequence)
+        if length % 2 == 0:
+            middle_idx = int(length / 2)
+        else:
+            middle_idx = int(length / 2 - 0.5)
+        if sequence[middle_idx] == number:
+            return middle_idx
+        else:
+            if sequence[middle_idx] < number:
+               search = sequence[middle_idx:]
+            else:
+               search = sequence[:middle_idx]
+        for i, num in enumerate(search):
+            if num == number:
+                return i
+        return None
 def main():
     sequential_data = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
@@ -46,8 +66,12 @@ def main():
     linear_data = read_data("sequential.json", "unordered_numbers")
     print(linear_data)
     print(linear_search(linear_data, number))
+    ordered_numbers = read_data("sequential.json", "ordered_numbers")
+    print(ordered_numbers)
+    print(binary_search(ordered_numbers, bin_num))
 
 if __name__ == '__main__':
     number = 9
+    bin_num = 22
     template = "ATA"
     main()
