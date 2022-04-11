@@ -19,6 +19,7 @@ def read_data(file_name, field):
         return None
     return data[field]
 
+
 def linear_search(data, number):
     summation = 0
     number_idxs = []
@@ -26,15 +27,24 @@ def linear_search(data, number):
         if num == number:
             number_idxs.append(i)
             summation += 1
-    number_count = {"Indexes": number_idxs, "Count": summation}
+    number_count = {"Positions": number_idxs, "Count": summation}
     return number_count
 
+
+def pattern_search(sequence, template):
+    index = set()
+    for i, letter in enumerate(sequence):
+        part = sequence[i:i+3]
+        if part == template:
+            index.add(i)
+    return index
+
 def main():
-    sequential_data = read_data("sequential.json", "unordered_numbers")
+    sequential_data = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
-    number_count = linear_search(sequential_data, number)
-    print(number_count)
+    print(pattern_search(sequential_data, template))
 
 if __name__ == '__main__':
     number = 9
+    template = "ATA"
     main()
