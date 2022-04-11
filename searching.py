@@ -34,7 +34,7 @@ def linear_search(data, number):
 def pattern_search(sequence, template):
     index = set()
     for i, letter in enumerate(sequence):
-        part = sequence[i:i+3]
+        part = sequence[i:i+len(template)]
         if part == template:
             index.add(i)
     return index
@@ -43,6 +43,9 @@ def main():
     sequential_data = read_data("sequential.json", "dna_sequence")
     print(sequential_data)
     print(pattern_search(sequential_data, template))
+    linear_data = read_data("sequential.json", "unordered_numbers")
+    print(linear_data)
+    print(linear_search(linear_data, number))
 
 if __name__ == '__main__':
     number = 9
